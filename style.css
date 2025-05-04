@@ -1,0 +1,206 @@
+/* Replace your existing CSS with this: */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+button {
+    cursor: pointer;
+}
+
+#search {
+    background-color: #0063ba;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: auto;
+    box-sizing: border-box;
+}
+
+#clear {
+    background-color: #de0000;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: auto;
+    box-sizing: border-box;
+}
+
+input, select, button, #select {
+    margin: 10px 5px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+main {
+    width: 100%;
+    margin: 20px auto;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden; /* Prevent scroll */
+}
+
+.carousel {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.carousel-container {
+    display: flex;
+    transition: transform 0.3s ease;
+    gap: 20px;
+    padding: 20px 0; /* Reduced padding */
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.book-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 15px;
+    width: 19%;
+    text-align: center;
+    flex: 0 0 auto;
+    box-sizing: border-box;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.book-card img {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    object-fit: contain;
+    border-radius: 5px;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    outline: none;
+}
+
+.carousel-btn:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+
+.carousel-btn.prev {
+    left: 0;
+}
+
+.carousel-btn.next {
+    right: 0;
+}
+
+button.bookmark-btn {
+    margin-top: auto;
+    background-color: #008CBA;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#booksContainer {
+    text-align: center;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    header {
+        padding: 15px 10px;
+    }
+    
+    input, select, button, #select {
+        width: 100%;
+        margin: 5px 0;
+    }
+    
+    .carousel {
+        padding: 0 10px;
+    }
+    
+    .book-card {
+        min-width: 180px;
+    }
+}
+/* Progress Bar Styles */
+.progress-bar {
+    width: 100%;
+    height: 4px;
+    background-color: #f0f0f0;
+    margin: 10px 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-bar::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0;
+    background-color: #eb0404;
+    animation: progressAnimation 2s infinite linear;
+}
+
+@keyframes progressAnimation {
+    0% {
+        width: 0;
+        left: 0;
+    }
+    50% {
+        width: 100%;
+        left: 0;
+    }
+    100% {
+        width: 0;
+        left: 100%;
+    }
+}

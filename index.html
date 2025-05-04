@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Recommendation App (OpenLibrary + Google Login)</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
+  <link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet"/>
+</head>
+<body>
+
+<header>
+  <h1>Book Recommendation App</h1>
+
+  <!-- Google Login Button -->
+  <div id="g_id_onload"
+       data-client_id="485649104025-opd0i9e21ilkdh5gkc7jaqj9rl37vbic.apps.googleusercontent.com"
+       data-callback="handleCredentialResponse"
+       data-auto_prompt="false">
+  </div>
+  <div class="g_id_signin"
+       data-type="standard"
+       data-size="large"
+       data-theme="outline"
+       data-text="sign_in_with"
+       data-shape="rectangular"
+       data-logo_alignment="left">
+  </div>
+
+  <!-- User Section -->
+  <div id="userSection" style="display: none;">
+    <p id="welcomeMessage"></p>
+    <img id="userPicture" width="50" style="border-radius:50%;" />
+    <p id="userEmail"></p>
+    <button onclick="logout()">Logout</button>
+    <button onclick="viewBookmarks()">My Bookmarks</button>
+  </div>
+
+  <!-- Search Section -->
+  <input type="text" id="titleInput" placeholder="Search for books by title...">
+  <input type="text" id="authorInput" placeholder="Search for Author...">
+  <select id="genreInput" data-placeholder="Select the book genre" multiple class="chosen-select" name="test">
+    <!-- Fiction Genres -->
+    <option>Literary Fiction</option>
+    <option>Science Fiction (Sci-Fi)</option>
+    <option>Fantasy</option>
+    <option>Horror</option>
+    <option>Mystery</option>
+    <option>Thriller/Suspense</option>
+    <option>Romance</option>
+    <option>Historical Fiction</option>
+    <option>Adventure</option>
+    <option>Humor/Satire</option>
+
+    <!-- Non-Fiction Genres -->
+    <option>Biography & Memoir</option>
+    <option>Self-Help</option>
+    <option>Business & Finance</option>
+    <option>Health & Wellness</option>
+    <option>History</option>
+    <option>Science & Technology</option>
+    <option>Travel</option>
+    <option>True Crime</option>
+    <option>Cookbooks</option>
+    <option>Philosophy & Religion</option>
+
+    <!-- Children's & YA Genres -->
+    <option>Children's Picture Books</option>
+    <option>Middle Grade (MG)</option>
+    <option>Young Adult (YA)</option>
+
+    <!-- Other Categories -->
+    <option>Poetry</option>
+    <option>Drama/Plays</option>
+    <option>Short Stories</option>
+    <option>Graphic Novels & Comics</option>
+    <option>Smut</option>
+  </select>
+  <input type="number" id="yearInput" placeholder="Year" min="1000" max="9999">
+  <input type="number" id="limitSelect" placeholder="Count" min="1" max="1000">    
+  <button onclick="searchBooks()" id="search">Search Book</button>
+  <button onclick="clearSearch()" id="clear">Clear Search</button>
+
+  <!-- Progress Bar -->
+  <div id="progressBar" class="progress-bar" style="display: none;"></div>
+</header>
+
+<main>
+  <h1>Best seller</h1>
+  <div id="booksContainer" class="books-container"></div>
+  <!-- Book Info Display Panel -->
+  <div id="bookInfoPanel" style="display:none; border:1px solid #ccc; padding:1em; margin-top:1em;"></div>
+
+  <!-- Bookmarks Section -->
+  <h3>Your Bookmarks</h3>
+  <div id="bookmarksList" style="margin-top: 20px;"></div>
+</main>
+
+<script src="script.js"></script>
+
+</body>
+</html>
