@@ -32,6 +32,7 @@ function logout() {
 
 async function searchBooks() {
     const title = document.getElementById('titleInput').value.trim();
+    const author = document.getElementById('authorInput').value.trim();
     const year = document.getElementById('yearInput').value.trim();
     const limit = document.getElementById('limitSelect').value || 10;
     const genre = document.getElementById('genreInput').value.trim();
@@ -39,26 +40,24 @@ async function searchBooks() {
     const progressBar = document.getElementById('progressBar');
     progressBar.style.display = 'block';
 
-    // Default base URL
     let url = `https://openlibrary.org/search.json?page=1`;
 
-    // Add title and/or genre if provided
+    // Add parameters dynamically
     if (title) url += `&title=${encodeURIComponent(title)}`;
+    if (author) url += `&author=${encodeURIComponent(author)}`;
     if (genre) url += `&subject=${encodeURIComponent(genre)}`;
 
-    // If all inputs are empty, show alert
-    if (!title && !genre && !year) {
-        alert("Please enter a title, genre, or year to search.");
+    // If all relevant inputs are empty
+    if (!title && !author && !genre && !year) {
+        alert("Please enter a title, author, genre, or year to search.");
         progressBar.style.display = 'none';
         return;
     }
 
-    // If only year is entered, use a general query to get results to filter
-    if (!title && !genre && year) {
-        url += `&q=the`; // Broad search query to fetch general data
+    // If only year is provided, use a broad search query
+    if (!title && !author && !genre && year) {
+        url += `&q=the`; // A broad term to fetch generic results
     }
-
-    console.log("Fetching data from URL:", url);
 
     try {
         const response = await fetch(url);
@@ -69,11 +68,9 @@ async function searchBooks() {
         }
 
         const data = await response.json();
-        console.log("Data fetched successfully:", data);
-
         booksData = data.docs || [];
 
-        // Apply year filter if provided
+        // Filter by year if specified
         if (year !== '') {
             booksData = booksData.filter(book =>
                 book.first_publish_year && book.first_publish_year >= parseInt(year)
