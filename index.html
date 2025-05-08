@@ -12,37 +12,51 @@
 </head>
 <body>
 
-<header>
-  <h1>Book Recommendation App</h1>
+  <header>
+    <div class="header-left">
+      <h1>Book Recommendation</h1>
+    </div>
+  
+  
+    <div class="header-right">
+      <!-- User Section -->
+      <div class="gAcc" id="userSection" style="display: none;">
+        <div class="gAcc user-info">
+          <img class="gAcc" id="userPicture" width="50" style="border-radius:50%;" />
+          <p class="gAcc" id="userEmail"></p>
+        </div>
+        <div class="gAcc user-controls">
+          <button class="gAcc" onclick="logout()">Logout</button>
+          <button class="gAcc" onclick="viewBookmarks()">My Bookmarks</button>
+        </div>
+      </div>
 
-  <!-- Google Login Button -->
-  <div id="g_id_onload"
-       data-client_id="485649104025-opd0i9e21ilkdh5gkc7jaqj9rl37vbic.apps.googleusercontent.com"
-       data-callback="handleCredentialResponse"
-       data-auto_prompt="false">
-  </div>
-  <div class="g_id_signin"
-       data-type="standard"
-       data-size="large"
-       data-theme="outline"
-       data-text="sign_in_with"
-       data-shape="rectangular"
-       data-logo_alignment="left">
-  </div>
+      <!-- Google Login Button -->
+      <div class="g-signin-container">
+        <div id="g_id_onload"
+             data-client_id="485649104025-opd0i9e21ilkdh5gkc7jaqj9rl37vbic.apps.googleusercontent.com"
+             data-callback="handleCredentialResponse"
+             data-auto_prompt="false">
+        </div>
+        <div class="g_id_signin"
+             data-type="standard"
+             data-size="large"
+             data-theme="outline"
+             data-text="sign_in_with"
+             data-shape="rectangular"
+             data-logo_alignment="left">
+        </div>
+      </div>
+    </div>
+  </header>
+  
 
-  <!-- User Section -->
-  <div id="userSection" style="display: none;">
-    <p id="welcomeMessage"></p>
-    <img id="userPicture" width="50" style="border-radius:50%;" />
-    <p id="userEmail"></p>
-    <button onclick="logout()">Logout</button>
-    <button onclick="viewBookmarks()">My Bookmarks</button>
-  </div>
-
+<!-- Rest of your HTML remains the same -->
+<div class="search-section">
   <!-- Search Section -->
   <input type="text" id="titleInput" placeholder="Search for books by title...">
   <input type="text" id="authorInput" placeholder="Search for Author...">
-  <select id="genreInput" data-placeholder="Select the book genre" multiple class="chosen-select" name="test">
+  <select id="genreInput" data-placeholder="Select Genre" multiple class="chosen-select" name="test">
     <!-- Fiction Genres -->
     <option>Literary Fiction</option>
     <option>Science Fiction (Sci-Fi)</option>
@@ -82,20 +96,17 @@
   <input type="number" id="yearInput" placeholder="Year" min="1000" max="9999">
   <input type="number" id="limitSelect" placeholder="Count" min="1" max="1000">    
   <button onclick="searchBooks()" id="search">Search Book</button>
-  <button onclick="clearSearch()" id="clear">Clear Search</button>
 
   <!-- Progress Bar -->
   <div id="progressBar" class="progress-bar" style="display: none;"></div>
-</header>
+</div>
 
 <main>
-  <h1>Best seller</h1>
   <div id="booksContainer" class="books-container"></div>
   <!-- Book Info Display Panel -->
-  <div id="bookInfoPanel" style="display:none; border:1px solid #ccc; padding:1em; margin-top:1em;"></div>
+  <div id="bookInfoPanel"></div>
 
   <!-- Bookmarks Section -->
-  <h3>Your Bookmarks</h3>
   <div id="bookmarksList" style="margin-top: 20px;"></div>
 </main>
 

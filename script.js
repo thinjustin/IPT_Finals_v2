@@ -9,12 +9,17 @@ function handleCredentialResponse(response) {
     localStorage.setItem('userEmail', data.email);
     localStorage.setItem('userPicture', data.picture);
 
-    document.getElementById('welcomeMessage').textContent = `Welcome, ${data.name}!`;
     document.getElementById('userEmail').textContent = data.email;
     document.getElementById('userPicture').src = data.picture;
     document.getElementById('userSection').style.display = 'block';
+
+    // Hide the sign-in container smoothly
+    const signinContainer = document.querySelector('.g-signin-container');
+    signinContainer.style.width = '0px';
+    signinContainer.style.overflow = 'hidden';
     document.querySelector('.g_id_signin').style.display = 'none';
 }
+
 
 function parseJwt(token) {
     const base64Url = token.split('.')[1];
